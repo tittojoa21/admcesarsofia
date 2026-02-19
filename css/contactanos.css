@@ -1,0 +1,486 @@
+/* Contact Page Styles */
+.contact-page {
+    padding: 2rem 0 4rem;
+    background: linear-gradient(135deg, var(--gris-claro) 0%, var(--blanco) 100%);
+    min-height: calc(100vh - 80px - 400px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de fondo con partículas */
+.contact-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(204, 0, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(204, 0, 0, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    animation: pulseBackground 8s ease-in-out infinite;
+}
+
+@keyframes pulseBackground {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.contact-grid {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Form Styles - Animado */
+.contact-form-container {
+    background: var(--blanco);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(204, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    animation: slideUpFade 0.8s ease-out;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contact-form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(204, 0, 0, 0.15);
+}
+
+/* Línea animada en la parte superior del formulario */
+.contact-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--rojo), var(--rojo-oscuro), var(--rojo), transparent);
+    animation: slideBorder 3s linear infinite;
+    background-size: 200% 100%;
+}
+
+@keyframes slideBorder {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-form-container h2 {
+    color: var(--rojo);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    border-bottom: 3px solid var(--rojo);
+    padding-bottom: 0.8rem;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+.contact-form-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--blanco);
+    animation: pulseWidth 2s ease-in-out infinite;
+}
+
+@keyframes pulseWidth {
+    0%, 100% {
+        width: 50px;
+        opacity: 1;
+    }
+    50% {
+        width: 100px;
+        opacity: 0.7;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Grupos de formulario con animación */
+.form-group {
+    margin-bottom: 1.8rem;
+    animation: slideInLeft 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(5) { animation-delay: 0.5s; }
+.form-group:nth-child(6) { animation-delay: 0.6s; }
+.form-group:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--negro);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: inherit;
+    background: #fafafa;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: var(--rojo);
+    background: var(--blanco);
+    transform: scale(1.02);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--rojo);
+    background: var(--blanco);
+    box-shadow: 0 5px 20px rgba(204, 0, 0, 0.2);
+    transform: scale(1.02) translateY(-2px);
+}
+
+/* Efecto de enfoque con glow */
+.form-group:focus-within label {
+    color: var(--rojo);
+    transform: translateX(5px);
+}
+
+/* Checkbox animado */
+.form-group.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem;
+    background: #f8f8f8;
+    border-radius: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.form-group.checkbox:hover {
+    background: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.form-group.checkbox input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--rojo);
+    transition: transform 0.2s;
+}
+
+.form-group.checkbox input:checked {
+    transform: scale(1.2);
+}
+
+.form-group.checkbox label {
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+/* Botón con animaciones */
+.btn-block {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(45deg, var(--rojo), var(--rojo-oscuro));
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(204, 0, 0, 0.3);
+}
+
+.btn-block::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(204, 0, 0, 0.4);
+}
+
+.btn-block:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-block:active {
+    transform: translateY(0);
+}
+
+.btn-block i {
+    margin-right: 0.8rem;
+    transition: transform 0.3s;
+}
+
+.btn-block:hover i {
+    transform: translateX(5px) rotate(10deg);
+}
+
+/* Form Message con animación */
+.form-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    display: none;
+    text-align: center;
+    font-weight: 500;
+    animation: shake 0.5s ease-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+.form-message.success {
+    display: block;
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    animation: slideDown 0.5s ease-out;
+}
+
+.form-message.error {
+    display: block;
+    background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Map Section con animaciones */
+.map-container {
+    margin-top: 4rem;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--rojo);
+    margin-bottom: 2rem;
+    position: relative;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--rojo), var(--rojo-oscuro), var(--rojo), transparent);
+    margin: 1rem auto;
+    animation: expandWidth 1s ease-out;
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 80px;
+        opacity: 1;
+    }
+}
+
+.map {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    transition: all 0.5s;
+    position: relative;
+}
+
+.map:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(204, 0, 0, 0.2);
+}
+
+.map::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.map:hover::before {
+    left: 150%;
+}
+
+/* Estilo para el spinner de carga */
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Botón deshabilitado */
+.btn-block:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-form-container {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+    
+    .contact-form-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .map {
+        height: 300px;
+        border-radius: 15px;
+    }
+    
+    .map iframe {
+        height: 300px;
+    }
+    
+    .form-group.checkbox {
+        align-items: flex-start;
+        padding: 0.8rem;
+    }
+    
+    .form-group.checkbox input {
+        margin-top: 3px;
+    }
+    
+    .contact-page {
+        min-height: auto;
+        padding: 1rem 0 3rem;
+    }
+    
+    .btn-block {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}

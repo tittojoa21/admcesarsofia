@@ -1,0 +1,330 @@
+/* Variables y reset */
+:root {
+    --rojo: #cc0000;
+    --rojo-oscuro: #8b0000;
+    --negro: #1a1a1a;
+    --blanco: #ffffff;
+    --gris-claro: #f5f5f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--negro);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header compartido */
+.header {
+    background: var(--blanco);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    background: var(--rojo);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blanco);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.company-name h1 {
+    font-size: 1.5rem;
+    color: var(--rojo);
+    line-height: 1.2;
+}
+
+.company-name p {
+    font-size: 0.8rem;
+    color: var(--negro);
+}
+
+/* Navegación - AHORA LINEAL EN MÓVIL TAMBIÉN */
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--negro);
+    font-weight: 500;
+    transition: color 0.3s;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--rojo);
+}
+
+.mobile-menu-btn {
+    display: none; /* OCULTO - ya no usamos menú hamburguesa */
+}
+
+/* Footer */
+.footer {
+    background: var(--negro);
+    color: var(--blanco);
+    padding: 3rem 0 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--rojo);
+    margin-bottom: 1rem;
+}
+
+.footer-section i {
+    margin-right: 0.5rem;
+    color: var(--rojo);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid #333;
+}
+
+/* Tu sello personal SIN CORAZÓN */
+.creator-signature {
+    background: var(--rojo-oscuro);
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    border-top: 2px solid var(--rojo);
+}
+
+.creator-signature p {
+    margin: 0;
+    color: var(--blanco);
+}
+
+.creator-signature a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.creator-signature a:hover {
+    color: var(--negro);
+}
+
+/* Botón flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    line-height: 60px;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 25px rgba(37, 211, 102, 0.6);
+    color: white;
+}
+
+.whatsapp-float i {
+    font-size: 35px;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--rojo);
+    color: var(--blanco);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--rojo-oscuro);
+    transform: translateY(-2px);
+}
+
+/* Estilos generales para páginas */
+.page-title {
+    font-size: 2.5rem;
+    color: var(--rojo);
+    text-align: center;
+    margin: 2rem 0 3rem;
+    padding-top: 80px;
+}
+
+/* RESPONSIVE - NAVBAR LINEAL CENTRADA EN MÓVIL */
+@media (max-width: 992px) {
+    .header-content {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .nav-menu {
+        width: 100%;
+    }
+    
+    .nav-menu ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+    }
+    
+    .nav-menu a {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0.8rem 0;
+    }
+    
+    .logo {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .company-name h1 {
+        font-size: 1.2rem;
+    }
+    
+    .company-name p {
+        font-size: 0.7rem;
+    }
+    
+    .nav-menu ul {
+        gap: 0.8rem;
+    }
+    
+    .nav-menu a {
+        font-size: 0.85rem;
+        padding: 0.3rem 0;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+        padding-top: 120px; /* Aumentado por el header más grande */
+    }
+    
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .whatsapp-float i {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu ul {
+        gap: 0.5rem;
+    }
+    
+    .nav-menu a {
+        font-size: 0.75rem;
+    }
+    
+    .logo {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .company-name h1 {
+        font-size: 1rem;
+    }
+    
+    .company-name p {
+        font-size: 0.6rem;
+    }
+    
+    .page-title {
+        padding-top: 130px;
+        font-size: 1.8rem;
+    }
+}
