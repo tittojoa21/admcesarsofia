@@ -1,0 +1,12 @@
+# robots.txt para casarmsofia.com
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+# Tiempo de rastreo
+Crawl-delay: 5
+
+# Sitemap
+Sitemap: https://casarmsofia.com/sitemap.xml
+Sitemap: https://casarmsofia.com.ar/sitemap.xml
