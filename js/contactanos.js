@@ -27,8 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            if (!validatePhone(telefono)) {
-                showMessage('Por favor, ingresa un teléfono válido.', 'error');
+            // Validación mejorada para teléfono
+            const phoneValidation = validatePhone(telefono);
+            if (!phoneValidation.valid) {
+                showMessage(phoneValidation.message, 'error');
+                document.getElementById('telefono').style.borderColor = 'var(--rojo)';
                 return;
             }
 
@@ -73,16 +76,96 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Función para validar email
+    // Función mejorada para validar email
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
 
-    // Función para validar teléfono
+    // Función mejorada para validar teléfono (ARGENTINA)
     function validatePhone(phone) {
-        const re = /^[\d\s\-+()]{8,20}$/;
-        return re.test(phone);
+        // Limpiar el teléfono de caracteres no numéricos para análisis
+        const cleaned = phone.replace(/[\s\-+()]/g, '');
+        
+        // Validaciones específicas para Argentina
+        if (cleaned.length < 8) {
+            return {
+                valid: false,
+                message: 'El teléfono debe tener al menos 8 dígitos'
+            };
+        }
+        
+        if (cleaned.length > 15) {
+            return {
+                valid: false,
+                message: 'El teléfono no puede tener más de 15 dígitos'
+            };
+        }
+        
+        // Verificar que solo contenga números después de limpiar
+        if (!/^\d+$/.test(cleaned)) {
+            return {
+                valid: false,
+                message: 'El teléfono solo puede contener números, espacios, +, - y ()'
+            };
+        }
+        
+        // Validaciones específicas para Argentina
+        if (cleaned.startsWith('11') && cleaned.length === 10) {
+            // Teléfono celular de Buenos Aires (ej: 1152298113)
+            return {
+                valid: true,
+                message: 'Teléfono válido'
+            };
+        }
+        
+        if (cleaned.startsWith('0') && cleaned.length >= 10) {
+            // Teléfono fijo con código de área
+            return {
+                valid: true,
+                message: 'Teléfono válido'
+            };
+        }
+        
+        if (cleaned.startsWith('54') && cleaned.length >= 11) {
+            // Teléfono con código de país
+            return {
+                valid: true,
+                message: 'Teléfono válido'
+            };
+        }
+        
+        // Si no cumple con los formatos específicos pero tiene entre 8 y 15 dígitos
+        if (cleaned.length >= 8 && cleaned.length <= 15) {
+            return {
+                valid: true,
+                message: 'Teléfono válido'
+            };
+        }
+        
+        return {
+            valid: false,
+            message: 'El formato del teléfono no es válido para Argentina'
+        };
+    }
+
+    // Función para formatear teléfono mientras se escribe (opcional)
+    function formatPhone(input) {
+        let value = input.value.replace(/\D/g, '');
+        
+        if (value.length <= 2) {
+            // Solo código de área o celular
+            input.value = value;
+        } else if (value.length <= 6) {
+            // Código + primeros dígitos
+            input.value = value.replace(/^(\d{2})(\d{1,4})/, '$1-$2');
+        } else if (value.length <= 10) {
+            // Formato completo sin país
+            input.value = value.replace(/^(\d{2})(\d{4})(\d{1,4})/, '$1-$2-$3');
+        } else {
+            // Con código de país
+            input.value = value.replace(/^(\d{2})(\d{2})(\d{4})(\d{1,4})/, '+$1 $2-$3-$4');
+        }
     }
 
     // Función para mostrar mensajes
@@ -98,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // Validación en tiempo real
+    // Validación en tiempo real para todos los campos
     const inputs = document.querySelectorAll('#contactForm input, #contactForm textarea, #contactForm select');
     inputs.forEach(input => {
         input.addEventListener('blur', function() {
@@ -121,6 +204,80 @@ document.addEventListener('DOMContentLoaded', function() {
             if (this.value && !validateEmail(this.value)) {
                 showMessage('El email no tiene un formato válido', 'error');
                 this.style.borderColor = 'var(--rojo)';
+            } else if (this.value) {
+                this.style.borderColor = '#28a745'; // Verde si es válido
+            }
+        });
+    }
+
+    // VALIDACIÓN MEJORADA PARA TELÉFONO EN TIEMPO REAL
+    const telefonoInput = document.getElementById('telefono');
+    if (telefonoInput) {
+        // Validación al perder el foco
+        telefonoInput.addEventListener('blur', function() {
+            if (this.value) {
+                const phoneValidation = validatePhone(this.value);
+                if (!phoneValidation.valid) {
+                    showMessage(phoneValidation.message, 'error');
+                    this.style.borderColor = 'var(--rojo)';
+                } else {
+                    this.style.borderColor = '#28a745'; // Verde si es válido
+                }
+            }
+        });
+
+        // Validación mientras se escribe (con formato automático)
+        telefonoInput.addEventListener('input', function() {
+            this.style.borderColor = '#ddd';
+            
+            // Auto-formato opcional (comentar si no se desea)
+            // formatPhone(this);
+        });
+
+        // Prevenir caracteres no numéricos (opcional)
+        telefonoInput.addEventListener('keypress', function(e) {
+            const char = String.fromCharCode(e.keyCode);
+            // Permitir números, +, espacios, -, paréntesis
+            if (!/[\d\s\-+()]/.test(char) && !e.ctrlKey && !e.metaKey) {
+                e.preventDefault();
+            }
+        });
+
+        // Validación de longitud mientras se escribe
+        telefonoInput.addEventListener('keyup', function() {
+            const cleaned = this.value.replace(/[\s\-+()]/g, '');
+            const phoneValidation = validatePhone(this.value);
+            
+            // Mostrar indicador de longitud
+            if (cleaned.length < 8 && this.value.length > 0) {
+                this.style.borderColor = '#ffc107'; // Amarillo (pocos dígitos)
+            } else if (phoneValidation.valid) {
+                this.style.borderColor = '#28a745'; // Verde (válido)
+            }
+        });
+    }
+
+    // Validación de longitud mínima para mensaje
+    const mensajeInput = document.getElementById('mensaje');
+    if (mensajeInput) {
+        mensajeInput.addEventListener('blur', function() {
+            if (this.value && this.value.length < 10) {
+                showMessage('El mensaje debe tener al menos 10 caracteres', 'error');
+                this.style.borderColor = 'var(--rojo)';
+            } else if (this.value) {
+                this.style.borderColor = '#28a745';
+            }
+        });
+    }
+
+    // Validación de checkbox en tiempo real
+    const terminosCheckbox = document.getElementById('terminos');
+    if (terminosCheckbox) {
+        terminosCheckbox.addEventListener('change', function() {
+            if (!this.checked) {
+                this.parentElement.style.borderColor = 'var(--rojo)';
+            } else {
+                this.parentElement.style.borderColor = '#28a745';
             }
         });
     }
