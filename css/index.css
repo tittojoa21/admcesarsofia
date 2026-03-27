@@ -17,7 +17,6 @@
                 url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     display: flex;
     align-items: center;
     text-align: center;
@@ -26,6 +25,12 @@
     position: relative;
 }
 
+/* Versión desktop con parallax */
+@media (min-width: 1024px) {
+    .hero {
+        background-attachment: fixed;
+    }
+}
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
@@ -64,6 +69,53 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(204,0,0,0.5);
     background: var(--rojo-oscuro);
+}
+/* Logo en el Hero */
+.hero-logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease;
+    display: inline-block;
+    filter: brightness(1.05) contrast(1.10);
+    transition: filter 0.3s ease;
+}
+
+/* Hover effect opcional */
+.hero-logo:hover {
+    filter: brightness(1.1);
+}
+
+/* Para desktop grande */
+@media (min-width: 1200px) {
+    .hero-logo {
+        width: 220px;
+        margin-bottom: 2.5rem;
+    }
+}
+
+/* Para tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .hero-logo {
+        width: 180px;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Para móvil */
+@media (max-width: 768px) {
+    .hero-logo {
+        width: 140px;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Para móvil pequeño */
+@media (max-width: 480px) {
+    .hero-logo {
+        width: 120px;
+        margin-bottom: 1.2rem;
+    }
 }
 
 /* ===== OFFICE GALLERY MEJORADO ===== */
