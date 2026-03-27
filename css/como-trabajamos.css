@@ -593,6 +593,8 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 1.5rem;
+        position: relative;
+        margin-bottom: 5rem;
     }
     
     .step-image-left,
@@ -609,7 +611,28 @@
     }
     
     .step-number {
-        left: 50%;
+        position: relative;
+        left: auto;
+        transform: none;
+        margin: 0 auto 1rem;
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+        animation: none;
+        order: -1;
+    }
+    
+    .process-step:hover .step-number {
+        transform: scale(1.1);
+    }
+    
+    @keyframes pulseNumber {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
     }
 }
 
@@ -625,22 +648,48 @@
     }
     
     .process-timeline::before {
-        left: 50%;
+        display: none; /* Ocultar la línea vertical en móvil */
+    }
+    
+    .process-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 3rem;
+        gap: 1rem;
+        position: relative;
     }
     
     .step-number {
-        width: 50px;
-        height: 50px;
-        font-size: 1.4rem;
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin: 0 auto 0.5rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+        order: 0;
+        flex-shrink: 0;
     }
     
     .step-image-left,
     .step-image-right {
-        height: 160px;
+        width: 100%;
+        max-width: 300px;
+        height: 180px;
+        margin: 0 auto;
+        order: 1;
     }
     
     .step-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
         padding: 1.5rem;
+        text-align: center;
+        order: 2;
     }
     
     .step-content i {
@@ -649,6 +698,10 @@
     
     .step-content h3 {
         font-size: 1.3rem;
+    }
+    
+    .step-content p {
+        font-size: 0.95rem;
     }
     
     .services-grid {
@@ -681,15 +734,27 @@
     .section-title::after {
         width: 60px;
     }
+    
+    /* Ocultar la línea de la timeline en móvil */
+    .process-timeline::before {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
     .step-image-left,
     .step-image-right {
         height: 140px;
+        max-width: 260px;
     }
     
     .step-content {
         padding: 1.2rem;
+    }
+    
+    .step-number {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
     }
 }
