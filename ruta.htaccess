@@ -1,11 +1,11 @@
 # Redirigir www a no-www
 RewriteEngine On
-RewriteCond %{HTTP_HOST} ^www\.casarmsofia\.com$ [NC]
-RewriteRule ^(.*)$ https://casarmsofia.com/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.cesarmsofia\.com$ [NC]
+RewriteRule ^(.*)$ https://cesarmsofia.com/$1 [R=301,L]
 
 # Redirigir .com.ar a .com
-RewriteCond %{HTTP_HOST} ^casarmsofia\.com\.ar$ [NC]
-RewriteRule ^(.*)$ https://casarmsofia.com/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^cesarmsofia\.com\.ar$ [NC]
+RewriteRule ^(.*)$ https://cesarmsofia.com/$1 [R=301,L]
 
 # Forzar HTTPS
 RewriteCond %{HTTPS} off
