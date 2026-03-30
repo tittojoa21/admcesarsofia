@@ -5,19 +5,19 @@
     
     <!-- Página Principal -->
     <url>
-        <loc>https://casarmsofia.com/</loc>
+        <loc>https://cesarmsofia.com/</loc>
         <lastmod>2026-03-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
-            <image:loc>https://casarmsofia.com/images/logo.jpg</image:loc>
+            <image:loc>https://cesarmsofia.com/images/logo.jpg</image:loc>
             <image:title>Administración de Consorcios Cesar Sofia</image:title>
         </image:image>
     </url>
     
     <!-- Sobre Nosotros -->
     <url>
-        <loc>https://casarmsofia.com/sobre-nosotros.html</loc>
+        <loc>https://cesarmsofia.com/sobre-nosotros.html</loc>
         <lastmod>2026-03-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -25,7 +25,7 @@
     
     <!-- Cómo Trabajamos -->
     <url>
-        <loc>https://casarmsofia.com/como-trabajamos.html</loc>
+        <loc>https://cesarmsofia.com/como-trabajamos.html</loc>
         <lastmod>2026-03-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -33,7 +33,7 @@
     
     <!-- Contacto -->
     <url>
-        <loc>https://casarmsofia.com/contactanos.html</loc>
+        <loc>https://cesarmsofia.com/contactanos.html</loc>
         <lastmod>2026-03-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
