@@ -4,9 +4,8 @@ Allow: /
 Disallow: /cgi-bin/
 Disallow: /tmp/
 
-# Tiempo de rastreo
-Crawl-delay: 5
+
 
 # Sitemap
-Sitemap: https://casarmsofia.com/sitemap.xml
-Sitemap: https://casarmsofia.com.ar/sitemap.xml
+Sitemap: https://cesarmsofia.com/sitemap.xml
+Sitemap: https://cesarmsofia.com.ar/sitemap.xml
